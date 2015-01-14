@@ -59,6 +59,7 @@ class TSharcInput : public TNamed  {
     void AddRunData(const char *tmp)                      { frundata.push_back(tmp)    ; }
     void AddSrcData(const char *tmp)                      { fsrcdata.push_back(tmp)    ; }
     void AddRunIon(const char *tmp)                       { fRunIons.push_back(tmp)    ; }
+    void SetSrcName(const char *tmp)						{ fSrcName.assign(tmp)		; }
     void AddSrcIon(const char *tmp)                       { fSrcIons.push_back(tmp)    ; }
     void AddSrcEnergy(Double_t &tmp)                      { fSrcEnergies.push_back(tmp); }
     void SetCalFile(const char *tmp)                      { fcalfile.assign(tmp)       ; } 
@@ -113,6 +114,7 @@ class TSharcInput : public TNamed  {
     std::vector<std::string> GetRunData()                 { return frundata            ; }
     std::vector<std::string> GetSrcData()                 { return fsrcdata            ; }
     std::vector<std::string> GetRunIons()                 { return fRunIons            ; }
+    const char *GetSrcName()								              { return fSrcName.c_str()		; }
     std::vector<std::string> GetSrcIons()                 { return fSrcIons            ; }
     std::vector<double> GetSrcEnergies()                  { return fSrcEnergies        ; }
     const char *GetCalFile()                              { return fcalfile.c_str()    ; }
@@ -136,12 +138,7 @@ class TSharcInput : public TNamed  {
     Double_t GetPadChargeMax()                            { return fPadCharge_max      ; }
 
     const char *MakeOutputName();
-/*
-    void SetRunChgMat(const char *tmp)   { frunchgmat.assign(tmp); }
-    void SetSrcChgMat(const char *tmp)   { fsrcchgmat.assign(tmp); }
-    const char *GetRunChgMat()     { return frunchgmat.c_str()   ; }
-    const char *GetSrcChgMat()     { return fsrcchgmat.c_str()   ; }
-*/
+
   private:
     std::string fInfileName;
     std::string fInfileData;
@@ -156,6 +153,7 @@ class TSharcInput : public TNamed  {
     Double_t    ftargthick;         // target thickness
     std::string ftargmat;           // target material
     std::vector<std::string> fRunIons; // formatted name of run ions
+    std::string fSrcName;				// calibration source name
     std::vector<std::string> fSrcIons; // formatted name of src ions
     std::vector<double> fSrcEnergies ; // energy of src ions
     

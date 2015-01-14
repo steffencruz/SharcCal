@@ -26,10 +26,10 @@ nameless {
   SrcChargeSpecFitRange   : 2000 8000
   SrcChargeSpecResolution : 20
   SrcChargeSpecThreshold  : 0.25
-  SrcIonName              : Alpha // not used yet but really helpful for naming stuff??
-  SrcIonType              : Alpha0
-  SrcIonType              : Alpha1
-  SrcIonType              : Alpha2
+  SrcIonName              : Alpha 
+//  SrcIonType              : Alpha0 // optional naming. Ion name will be used to generate these automatically.
+//  SrcIonType              : Alpha1
+//  SrcIonType              : Alpha2
   SrcIonEnergy            : 5156.6 5484.6 5804.8 
 
 // DATA PROCESSING INFO         //////////////////////////////////////////////////////

@@ -421,6 +421,10 @@ Bool_t TSharcInput::ParseInputFile(const char *filedata){
             type[j++] = c;
           }
           trim(&type);
+          
+          ///////////          ///////////          ///////////          ///////////          ///////////
+          // perhaps reorganize this function so that there is chronology in the parsed settings
+          
           //printf("type[%s]:\t%s\n", type.c_str(),line.c_str());
           if(type.compare("DELTACALSTYLE")==0){
              if(line.find("Src")!=std::string::npos)
@@ -447,9 +451,15 @@ Bool_t TSharcInput::ParseInputFile(const char *filedata){
             TSharcAnalysis::SetTarget(tempdouble); // IT HAPPENS NOW!!
             SetTargetThickness(tempdouble);
           } else if(type.compare("SRCIONTYPE")==0){
+          	if(!GetSrcName().empty())
+          		SetSrcName(line.c_str());
            // if(GetSrcIons().size()==0)
-               AddSrcIon(line.c_str());
-           // else printf("{TSharcInput} Warning :  Source Ion types may NOT be updated.\n");
+           //    AddSrcIon(line.c_str());
+           /* else{
+            printf("{TSharcInput} Warning :  Source Ion types may NOT be updated.\n");
+            return false; // Do we want to continue parsing the input file this point?
+            }
+            */
           } else if(type.compare("SRCIONENERGY")==0){
           //  if(GetSrcEnergies().size()==0){
                Double_t tempdouble; 
@@ -526,6 +536,11 @@ const char *TSharcInput::MakeOutputName(){
 
 Bool_t TSharcInput::CheckInput(){
   // make sure the essentials paramaters are present, and that vectors are correct lengths etc
+
+	for(int i=0; i<GetSrcEnergies().size(); i++)
+		AddSrcIon(Form("%s%i",GetSrcName(),i));
+		
+
   if( 1 == 1)
      return true;
 }
